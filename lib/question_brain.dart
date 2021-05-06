@@ -38,6 +38,10 @@ class QuestionBrain {
     }
   }
 
+  void resetQuestionCount() {
+    _questionNumber = 0;
+  }
+
   String getQuestionText() {
     return _questionBank[_questionNumber].questionBody;
   }

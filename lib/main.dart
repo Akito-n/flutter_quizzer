@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzer_flutter/question_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() {
   runApp(
@@ -38,6 +39,26 @@ class _QuizPageState extends State<QuizPage> {
       questionBrain.getNextQuestion();
       if (questionBrain.hasNextQuestion()) {
         scoreKeeper.add(icon);
+      } else {
+        Alert(
+            context: context,
+            title: "Finish",
+            desc: "press under button to reset",
+            buttons: [
+              DialogButton(
+                child: Text(
+                  'Reset',
+                  style: TextStyle(color: Colors.white, fontSize: 20.0),
+                ),
+                onPressed: () {
+                  setState(() {
+                    questionBrain.resetQuestionCount();
+                    scoreKeeper.clear();
+                    Navigator.pop(context);
+                  });
+                },
+              )
+            ]).show();
       }
     });
   }
